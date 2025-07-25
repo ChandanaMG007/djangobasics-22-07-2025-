@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #c9e4ff, #d7f9f1);
+      padding: 40px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background: #84d2c5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weekly Water Tracker 💧</h1>
+  <form onsubmit="event.preventDefault(); calculateWater();">
+    <label>Monday (litres):</label>
+    <input type="number" step="0.1" id="mon" required>
+    
+    <label>Tuesday:</label>
+    <input type="number" step="0.1" id="tue" required>
+
+    <label>Wednesday:</label>
+    <input type="number" step="0.1" id="wed" required>
+
+    <label>Thursday:</label>
+    <input type="number" step="0.1" id="thu" required>
+
+    <label>Friday:</label>
+    <input type="number" step="0.1" id="fri" required>
+
+    <label>Saturday:</label>
+    <input type="number" step="0.1" id="sat" required>
+
+    <label>Sunday:</label>
+    <input type="number" step="0.1" id="sun" required>
+
+    <button type="submit">Check My Weekly Water 💦</button>
+    <div id="result"></div>
+  </form>
+
+  <script>
+    function calculateWater() {
+      const days = ['mon','tue','wed','thu','fri','sat','sun'];
+      let total = 0;
+      days.forEach(day => {
+        total += parseFloat(document.getElementById(day).value) || 0;
+      });
+      const resultBox = document.getElementById("result");
+      if (total >= 19) {
+        resultBox.textContent = `Yay! You drank ${total}L this week 🥳 You met your goal!`;
+        resultBox.style.color = "green";
+      } else {
+        resultBox.textContent = `You drank ${total}L. Try to reach 19L next week! 💧`;
+        resultBox.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>

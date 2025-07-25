@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Self-Care Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #42885e, #4a9240, #399058);
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Soft animated pastel circles */
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      z-index: 0;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .shape1 {
+      width: 250px;
+      height: 250px;
+      background: #ffffff;
+      top: -120px;
+      left: -80px;
+      animation-delay: 0s;
+    }
+
+    .shape2 {
+      width: 180px;
+      height: 180px;
+      background: #e0f7fa;
+      bottom: 120px;
+      right: -40px;
+      animation-delay: 3s;
+    }
+
+    .shape3 {
+      width: 120px;
+      height: 120px;
+      background: #a5d6a7;
+      top: 45%;
+      left: 72%;
+      animation-delay: 6s;
+    }
+
+    .shape4 {
+      width: 100px;
+      height: 100px;
+      background: #f8bbd0;
+      top: 30%;
+      left: 10%;
+      animation-delay: 4s;
+    }
+
+    .shape5 {
+      width: 160px;
+      height: 160px;
+      background: #d1c4e9;
+      bottom: 50px;
+      left: 40%;
+      animation-delay: 2s;
+    }
+
+    .shape6 {
+      width: 130px;
+      height: 130px;
+      background: #ffe0b2;
+      top: 15%;
+      right: 12%;
+      animation-delay: 5s;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-30px) rotate(15deg); }
+    }
+
+    .quote {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      padding: 60px 20px 30px;
+      color: #fdfdfd;
+      animation: popIn 1.5s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .wrapper {
+      max-width: 1000px;
+      margin: 30px auto 80px;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      background: linear-gradient(to right, #c6cef8, #a8b6fc);
+      padding: 50px 20px;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+      width: 250px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
+      100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+    }
+
+    .box a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✨ Floating pastel shapes -->
+  <div class="bg-shape shape1"></div>
+  <div class="bg-shape shape2"></div>
+  <div class="bg-shape shape3"></div>
+  <div class="bg-shape shape4"></div>
+  <div class="bg-shape shape5"></div>
+  <div class="bg-shape shape6"></div>
+
+  <div class="quote">
+    "Taking care of yourself is productive. Breathe. Hydrate. Relax. Reflect."
+  </div>
+
+  <div class="wrapper">
+    <div class="row">
+      <div class="box"><a href="{% url 'breathing' %}">🧘‍♀️ Breathing</a></div>
+      <div class="box"><a href="{% url 'pomodoro' %}">⏱️ Pomodoro</a></div>
+      <div class="box"><a href="{% url 'quotes' %}">💌 Quotes</a></div>
+    </div>
+    <div class="row">
+      <div class="box" style="margin-left: 100px;"><a href="{% url 'journal' %}">📓 Relax</a></div>
+      <div class="box" style="margin-right: 100px;"><a href="{% url 'water' %}">💧 Water Tracker</a></div>
+    </div>
+  </div>
+
+</body>
+</html>

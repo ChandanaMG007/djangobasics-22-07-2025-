@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Let It Go Journal</title>
+  <style>
+    body {
+      background-color: #fff6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #cc7a7a;
+    }
+
+    .journal-entry {
+      width: 80%;
+      height: 200px;
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 16px;
+      background-color: #fff;
+      border: 2px solid #d4a373;
+      border-radius: 10px;
+      outline: none;
+      resize: none;
+      box-shadow: 2px 2px 10px #e0b1a7;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .release-btn {
+      margin: 20px auto;
+      padding: 12px 25px;
+      background-color: #ffcab0;
+      color: #5e4b4b;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .release-btn:hover {
+      background-color: #f9a27d;
+    }
+
+    .vanish {
+      opacity: 0;
+      transform: translateY(-50px) scale(0.9);
+    }
+
+    .message {
+      font-size: 35px;
+      color: #7a5c5c;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    .message.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Let It Go 🕊️</h1>
+  <p>Write something you'd like to let go of...</p>
+  <textarea class="journal-entry" id="journalText" placeholder="Type your worries here..."></textarea>
+  <br>
+  <button class="release-btn" onclick="releaseIt()">Relax Your Mind</button>
+
+  <div class="message" id="confirmationMessage">Everything's alright now 💫</div>
+
+  <script>
+    function releaseIt() {
+      const textArea = document.getElementById('journalText');
+      const message = document.getElementById('confirmationMessage');
+
+      textArea.classList.add('vanish');
+
+      setTimeout(() => {
+        textArea.style.display = 'none';
+        message.classList.add('show');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      height: 100vh;
+      background: linear-gradient(-45deg, #a996c1, #bb90b2, #d8f3dc, #e0f7fa);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #666;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #a0e7e5;
+      color: #333;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #89d4cf;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="box">
+      <h2>Create Your Account💕</h2>
+
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <label>Username</label>
+      <input type="text" name="name" required>
+
+      <label>Mail ID</label>
+      <input type="email" name="email" required>
+
+      <label>Age</label>
+      <select name="age" required>
+        <option value="" selected disabled>Select Age</option>
+        {% for i in age_range %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Gender</label>
+      <select name="gender" required>
+        <option value="">Select</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Create Password</label>
+      <input type="password" name="password" id="password" required oninput="showRetype(this.value)">
+
+      <div id="retypeDiv" class="hidden">
+        <label>Retype Password</label>
+        <input type="password" name="confirm_password">
+      </div>
+
+      <input type="submit" value="Sign Up">
+    </div>
+  </form>
+
+  <script>
+    function showRetype(val) {
+      const retypeDiv = document.getElementById("retypeDiv");
+      if (val.length > 0) {
+        retypeDiv.classList.remove("hidden");
+      } else {
+        retypeDiv.classList.add("hidden");
+      }
+    }
+  </script>
+</body>
+</html>

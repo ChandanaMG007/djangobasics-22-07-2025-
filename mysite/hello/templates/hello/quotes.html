@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quote Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to right, #fce3ec, #fcc4d3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 500px;
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #d94f76;
+      font-size: 28px;
+    }
+
+    #quote {
+      font-size: 24px;
+      margin-bottom: 30px;
+      color: #333;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      min-height: 70px;
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+
+    .fade-in {
+      opacity: 1;
+    }
+
+    button {
+      background-color: #ff8da1;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #f56480;
+      transform: scale(1.05);
+    }
+
+    /* Floating circles animation */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      animation: float 10s linear infinite;
+    }
+
+    .circle:nth-child(1) {
+      width: 100px;
+      height: 100px;
+      left: 10%;
+      top: 20%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      right: 15%;
+      top: 30%;
+      animation-duration: 10s;
+    }
+
+    .circle:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      left: 40%;
+      bottom: 10%;
+      animation-duration: 14s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-30px) scale(1.1);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+
+  <div class="container">
+    <h2>✨ Your Quote ✨</h2>
+    <div id="quote">Click the button to get a quote 💬</div>
+    <button onclick="generateQuote()">New Quote</button>
+  </div>
+
+  <script>
+    const quotes = [
+      "Believe in yourself 🌟",
+      "Take it one step at a time 🍃",
+      "You are enough 💖",
+      "Dream big, start small 🌈",
+      "Your vibe attracts your tribe ✨",
+      "Breathe in calm, breathe out stress 😌"
+    ];
+
+    function generateQuote() {
+      const quoteElement = document.getElementById("quote");
+      quoteElement.classList.remove("fade-in");
+      quoteElement.classList.add("fade-out");
+
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        quoteElement.textContent = quotes[randomIndex];
+        quoteElement.classList.remove("fade-out");
+        quoteElement.classList.add("fade-in");
+      }, 500);
+    }
+  </script>
+</body>
+</html>
